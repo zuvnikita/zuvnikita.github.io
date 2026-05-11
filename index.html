@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Никита Зуев — Инженер-конструктор</title>
+  <meta name="description" content="Портфолио инженера-конструктора. Проектирование защитных аксессуаров для квадроциклов и снегоходов из стали, алюминия и ПЭНД.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #1a3fa6;
+      --dark-blue: #132f8a;
+      --footer-blue: #0a1f5c;
+      --white: #ffffff;
+      --light-bg: #f7f9ff;
+      --card-bg: #f0f4ff;
+      --text: #1a1a2e;
+      --text-muted: #6b7a99;
+      --border: rgba(26,63,166,0.15);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4 { font-family: 'Raleway', sans-serif; font-weight: 500; }
+
+    /* SVG GRID */
+    .svg-grid {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 80px 80px, 80px 80px, 20px 20px, 20px 20px;
+      pointer-events: none;
+    }
+    .svg-grid::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 70%);
+      pointer-events: none;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 0.5px solid var(--border);
+      height: 60px;
+      display: flex; align-items: center;
+      padding: 0 48px;
+    }
+    .nav-inner {
+      max-width: 1200px; width: 100%; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Raleway', sans-serif;
+      font-size: 16px; font-weight: 600;
+      letter-spacing: 4px; color: var(--blue);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-size: 11px; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--text-muted);
+      text-decoration: none; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-cta {
+      padding: 7px 18px;
+      border: 1px solid var(--blue); border-radius: 3px;
+      font-size: 10px; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--blue);
+      text-decoration: none; transition: all .2s;
+    }
+    .nav-cta:hover { background: var(--blue); color: #fff; }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      background: var(--dark-blue);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      padding: 80px 24px 60px;
+      text-align: center;
+    }
+    .hero-content { position: relative; z-index: 2; }
+    .monogram-wrap {
+      width: 90px; height: 90px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 28px;
+      position: relative;
+    }
+    .monogram-wrap::before {
+      content: '';
+      position: absolute;
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .monogram-inner {
+      width: 72px; height: 72px; border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Raleway', sans-serif;
+      font-size: 22px; font-weight: 500;
+      color: #fff; letter-spacing: 3px;
+    }
+    .hero-name {
+      font-size: clamp(42px, 8vw, 80px);
+      font-weight: 500; color: #fff;
+      letter-spacing: clamp(8px, 2vw, 16px);
+      line-height: 1; margin-bottom: 6px;
+    }
+    .hero-divider {
+      width: 40px; height: 1px;
+      background: rgba(255,255,255,0.25);
+      margin: 18px auto;
+    }
+    .hero-sub {
+      font-size: 12px; color: rgba(255,255,255,0.55);
+      letter-spacing: 2.5px; text-transform: uppercase;
+      line-height: 1.8;
+    }
+    .hero-chips {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      justify-content: center; margin-top: 22px;
+    }
+    .chip {
+      padding: 5px 13px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 20px;
+      font-size: 10px; color: rgba(255,255,255,0.45);
+      letter-spacing: 0.5px;
+    }
+    .hero-btns { display: flex; gap: 12px; justify-content: center; margin-top: 28px; }
+    .btn-outline {
+      padding: 11px 26px;
+      border: 1px solid rgba(255,255,255,0.35); border-radius: 3px;
+      font-size: 11px; color: #fff;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      text-decoration: none; transition: all .2s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); }
+    .btn-solid {
+      padding: 11px 26px; border-radius: 3px;
+      font-size: 11px; color: var(--dark-blue);
+      background: #fff; letter-spacing: 1.5px;
+      text-transform: uppercase; font-weight: 600;
+      text-decoration: none; transition: opacity .2s;
+    }
+    .btn-solid:hover { opacity: 0.9; }
+    .hero-city {
+      position: absolute; bottom: 20px; right: 28px;
+      font-size: 9px; color: rgba(255,255,255,0.18);
+      letter-spacing: 2px; text-transform: uppercase;
+    }
+
+    /* SECTIONS */
+    section { padding: 80px 48px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .eyebrow {
+      font-size: 10px; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--blue);
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 500; color: var(--text);
+      margin-bottom: 40px; line-height: 1.2;
+    }
+
+    /* ABOUT */
+    #about { background: var(--white); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: start;
+    }
+    .about-text p {
+      font-size: 16px; color: var(--text-muted);
+      line-height: 1.8; margin-bottom: 16px;
+    }
+    .about-text p:last-child { margin-bottom: 0; }
+    .stats-col { display: flex; flex-direction: column; gap: 14px; }
+    .stat-card {
+      background: var(--card-bg);
+      border-radius: 10px; padding: 20px 24px;
+    }
+    .stat-num {
+      font-family: 'Raleway', sans-serif;
+      font-size: 36px; font-weight: 500;
+      color: var(--blue); line-height: 1;
+    }
+    .stat-label {
+      font-size: 12px; color: var(--text-muted);
+      margin-top: 4px; letter-spacing: 0.3px;
+    }
+
+    /* SKILLS */
+    #skills { background: var(--light-bg); }
+    .skills-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 12px; margin-bottom: 24px;
+    }
+    .skill-row {
+      background: var(--white);
+      border: 0.5px solid var(--border);
+      border-radius: 8px; padding: 14px 16px;
+    }
+    .skill-top {
+      display: flex; justify-content: space-between;
+      align-items: baseline; margin-bottom: 8px;
+    }
+    .skill-name { font-size: 13px; font-weight: 500; color: var(--text); }
+    .skill-lvl { font-size: 10px; color: var(--text-muted); letter-spacing: 0.5px; }
+    .skill-bar-bg { height: 2px; background: #e4eaf7; border-radius: 1px; }
+    .skill-bar { height: 2px; background: var(--blue); border-radius: 1px; }
+    .scanner-block {
+      background: var(--white);
+      border: 0.5px solid var(--border);
+      border-radius: 8px; padding: 14px 16px;
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 24px;
+    }
+    .scanner-icon { font-size: 20px; }
+    .scanner-label { font-size: 11px; color: var(--text-muted); letter-spacing: 0.5px; }
+    .scanner-val { font-size: 14px; font-weight: 500; color: var(--text); margin-top: 2px; }
+    .tags-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag {
+      font-size: 12px; padding: 5px 14px;
+      border: 0.5px solid var(--border);
+      border-radius: 20px; color: var(--blue);
+      background: var(--white);
+    }
+
+    /* PORTFOLIO */
+    #portfolio { background: var(--white); }
+    .pf-filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+    .pf-btn {
+      padding: 6px 16px; border-radius: 20px;
+      border: 0.5px solid var(--border);
+      font-size: 11px; color: var(--text-muted);
+      background: var(--white); cursor: pointer;
+      transition: all .15s; letter-spacing: 0.3px;
+    }
+    .pf-btn.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+    .port-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .port-card {
+      border: 0.5px solid #e4eaf7; border-radius: 12px;
+      overflow: hidden; cursor: pointer;
+      transition: border-color .2s, transform .2s;
+      background: var(--white);
+    }
+    .port-card:hover { border-color: var(--blue); transform: translateY(-3px); }
+    .port-card.wide { grid-column: span 2; }
+    .card-img {
+      height: 160px; background: #0d1f6b;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .card-img.tall { height: 200px; }
+    .card-img-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 20px 20px;
+      pointer-events: none;
+    }
+    .card-placeholder {
+      position: relative; z-index: 2;
+      font-size: 11px; color: rgba(255,255,255,0.25);
+      letter-spacing: 1px; text-transform: uppercase;
+    }
+    .card-feat {
+      position: absolute; top: 10px; left: 10px; z-index: 3;
+      background: var(--blue); color: #fff;
+      font-size: 8px; letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 3px 9px; border-radius: 10px;
+    }
+    .card-body { padding: 14px 16px 18px; }
+    .card-cat {
+      font-size: 9px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--blue);
+      margin-bottom: 5px;
+    }
+    .card-title {
+      font-size: 14px; font-weight: 500;
+      color: var(--text); margin-bottom: 7px;
+      line-height: 1.35;
+    }
+    .card-desc {
+      font-size: 12px; color: var(--text-muted);
+      line-height: 1.6; margin-bottom: 12px;
+    }
+    .card-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+    .ctag {
+      font-size: 9px; padding: 2px 8px;
+      border-radius: 8px;
+      background: #eef2fc; color: var(--blue);
+    }
+
+    /* EXPERIENCE */
+    #experience { background: var(--light-bg); }
+    .timeline { position: relative; padding-left: 24px; }
+    .timeline::before {
+      content: ''; position: absolute;
+      left: 0; top: 8px; bottom: 8px;
+      width: 1px; background: var(--border);
+    }
+    .tl-item { position: relative; margin-bottom: 36px; }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-dot {
+      position: absolute; left: -28px; top: 5px;
+      width: 10px; height: 10px;
+      border-radius: 50%; background: var(--blue);
+      border: 2px solid var(--light-bg);
+    }
+    .tl-dot.old { background: #b0bfdd; }
+    .tl-date {
+      font-size: 10px; color: var(--blue);
+      letter-spacing: 1px; text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+    .tl-company {
+      font-family: 'Raleway', sans-serif;
+      font-size: 18px; font-weight: 500;
+      color: var(--text); margin-bottom: 3px;
+    }
+    .tl-role { font-size: 14px; color: var(--text-muted); margin-bottom: 8px; }
+    .tl-desc { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+    .edu-block {
+      margin-top: 36px; padding-top: 32px;
+      border-top: 0.5px solid var(--border);
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .edu-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--card-bg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .edu-deg {
+      font-size: 15px; font-weight: 500; color: var(--text);
+    }
+    .edu-info {
+      font-size: 13px; color: var(--text-muted);
+      margin-top: 3px; line-height: 1.6;
+    }
+
+    /* CONTACTS */
+    #contacts {
+      background: var(--dark-blue);
+      position: relative; overflow: hidden;
+      text-align: center;
+    }
+    .contact-name {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 500; color: #fff;
+      letter-spacing: clamp(6px, 1.5vw, 12px);
+      margin-bottom: 8px;
+    }
+    .contact-sub {
+      font-size: 13px; color: rgba(255,255,255,0.45);
+      margin-bottom: 36px; line-height: 1.7;
+    }
+    .contact-cards {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 12px; margin-bottom: 40px;
+      max-width: 800px; margin-left: auto; margin-right: auto;
+    }
+    .cc {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px; padding: 16px 18px;
+      text-align: left;
+    }
+    .cc-type {
+      font-size: 9px; letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35); margin-bottom: 6px;
+    }
+    .cc-val { font-size: 13px; color: #fff; font-weight: 500; }
+    .cc-val a { color: #fff; text-decoration: none; }
+    .cc-val a:hover { text-decoration: underline; }
+    .contact-form {
+      max-width: 480px; margin: 0 auto 36px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .form-input {
+      padding: 13px 16px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 6px;
+      font-size: 14px; color: #fff;
+      font-family: 'Inter', sans-serif;
+      outline: none; transition: border-color .2s;
+    }
+    .form-input::placeholder { color: rgba(255,255,255,0.35); }
+    .form-input:focus { border-color: rgba(255,255,255,0.4); }
+    textarea.form-input { resize: vertical; min-height: 110px; }
+    .form-btn {
+      padding: 13px;
+      background: #fff; color: var(--dark-blue);
+      border: none; border-radius: 6px;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      cursor: pointer; transition: opacity .2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .form-btn:hover { opacity: 0.9; }
+    .contact-sign {
+      font-size: 9px; color: rgba(255,255,255,0.18);
+      letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 0;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--footer-blue);
+      padding: 18px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-inner {
+      max-width: 1200px; width: 100%; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-logo {
+      font-family: 'Raleway', sans-serif;
+      font-size: 14px; font-weight: 500;
+      letter-spacing: 4px; color: rgba(255,255,255,0.3);
+    }
+    .footer-copy { font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 1px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      section { padding: 60px 24px; }
+      .about-grid { grid-template-columns: 1fr; gap: 36px; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .port-grid { grid-template-columns: 1fr 1fr; }
+      .port-card.wide { grid-column: span 2; }
+      .contact-cards { grid-template-columns: 1fr 1fr; }
+      footer { padding: 16px 24px; }
+    }
+    @media (max-width: 600px) {
+      .port-grid { grid-template-columns: 1fr; }
+      .port-card.wide { grid-column: span 1; }
+      .contact-cards { grid-template-columns: 1fr; }
+      .hero-btns { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">NZ</a>
+      <ul class="nav-links">
+        <li><a href="#about">О себе</a></li>
+        <li><a href="#skills">Навыки</a></li>
+        <li><a href="#portfolio">Портфолио</a></li>
+        <li><a href="#experience">Опыт</a></li>
+      </ul>
+      <a href="#contacts" class="nav-cta">Связаться</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="svg-grid"></div>
+    <div class="hero-content">
+      <div class="monogram-wrap">
+        <div class="monogram-inner">NZ</div>
+      </div>
+      <h1 class="hero-name">ZUEV</h1>
+      <div class="hero-divider"></div>
+      <div class="hero-sub">
+        Инженер-конструктор<br>
+        Защитные аксессуары · Powersports
+      </div>
+      <div class="hero-chips">
+        <span class="chip">Сталь · Алюминий · ПЭНД</span>
+        <span class="chip">Siemens NX</span>
+        <span class="chip">Екатеринбург</span>
+      </div>
+      <div class="hero-btns">
+        <a href="#portfolio" class="btn-outline">Портфолио</a>
+        <a href="#contacts" class="btn-solid">Связаться</a>
+      </div>
+    </div>
+    <div class="hero-city">NIKITA ZUEV · 2025</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="eyebrow">О себе</div>
+      <div class="about-grid">
+        <div class="about-text">
+          <h2 class="section-title">Проектирую детали,<br>которые защищают технику</h2>
+          <p>Разрабатываю защитные и силовые аксессуары для квадроциклов и снегоходов из стали, алюминия и ПЭНД. Веду проект от первого эскиза до полного комплекта конструкторской документации по ГОСТ и ЕСКД.</p>
+          <p>Работаю с 3D-сканированием — сканирую объекты и обрабатываю полученные данные для дальнейшего проектирования. Основной инструмент — Siemens NX. Дополнительно работаю в Blender, Maya и Photoshop, практикую 3D-печать.</p>
+        </div>
+        <div class="stats-col">
+          <div class="stat-card">
+            <div class="stat-num">21</div>
+            <div class="stat-label">Спроектированных изделий</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">1.5+</div>
+            <div class="stat-label">Года коммерческого опыта</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">5</div>
+            <div class="stat-label">CAD / 3D-инструментов</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-inner">
+      <div class="eyebrow">Инструменты</div>
+      <h2 class="section-title">Навыки и программы</h2>
+      <div class="skills-grid">
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">Siemens NX</span><span class="skill-lvl">Уверенный</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar" style="width:90%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">3D-сканирование</span><span class="skill-lvl">Практический</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar" style="width:75%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">SolidWorks</span><span class="skill-lvl">Базовый</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar" style="width:55%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">Компас-3D</span><span class="skill-lvl">Базовый</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar" style="width:50%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">Blender / Maya</span><span class="skill-lvl">Базовый</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar" style="width:45%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">Photoshop</span><span class="skill-lvl">Базовый</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar" style="width:40%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">AutoCAD</span><span class="skill-lvl">Базовый</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar" style="width:45%"></div></div>
+        </div>
+      </div>
+      <div class="scanner-block">
+        <div class="scanner-icon">📡</div>
+        <div>
+          <div class="scanner-label">Оборудование · 3D-сканер</div>
+          <div class="scanner-val">Shining 3D Einstar</div>
+        </div>
+      </div>
+      <div class="scanner-block" style="margin-bottom:24px;">
+        <div class="scanner-icon">🖨️</div>
+        <div>
+          <div class="scanner-label">Оборудование · 3D-принтер</div>
+          <div class="scanner-val">Creality K1C</div>
+        </div>
+      </div>
+      <div class="tags-row">
+        <span class="tag">ГОСТ / ЕСКД</span>
+        <span class="tag">Профильная труба</span>
+        <span class="tag">Листовой металл</span>
+        <span class="tag">ПЭНД / Пластик</span>
+        <span class="tag">3D-печать</span>
+        <span class="tag">Реверс-инжиниринг</span>
+        <span class="tag">Технологическая оснастка</span>
+        <span class="tag">Сборочные узлы</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <div class="section-inner">
+      <div class="eyebrow">Работы</div>
+      <h2 class="section-title">Портфолио</h2>
+      <div class="pf-filters">
+        <button class="pf-btn active" onclick="pfFilter(this,'all')">Все проекты</button>
+        <button class="pf-btn" onclick="pfFilter(this,'atv')">Квадроцикл</button>
+        <button class="pf-btn" onclick="pfFilter(this,'snow')">Снегоход</button>
+        <button class="pf-btn" onclick="pfFilter(this,'other')">Прочее</button>
+      </div>
+      <div class="port-grid" id="portGrid">
+
+        <!-- Card 1 — wide, featured -->
+        <div class="port-card wide" data-c="atv">
+          <div class="card-img">
+            <div class="card-img-grid"></div>
+            <div class="card-feat">Основной проект</div>
+            <div class="card-placeholder">Фото / 3D-рендер</div>
+          </div>
+          <div class="card-body">
+            <div class="card-cat">Бамперы · Квадроцикл</div>
+            <div class="card-title">Серия бамперов — 10 моделей для ATV</div>
+            <div class="card-desc">Разработка линейки передних и задних защитных бамперов из стальной трубы для квадроциклов различных марок. Полный цикл: сканирование объекта, моделирование в Siemens NX, оформление КД по ГОСТ/ЕСКД.</div>
+            <div class="card-tags">
+              <span class="ctag">Сталь</span>
+              <span class="ctag">Профтруба</span>
+              <span class="ctag">Siemens NX</span>
+              <span class="ctag">ГОСТ</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="port-card" data-c="snow">
+          <div class="card-img">
+            <div class="card-img-grid"></div>
+            <div class="card-placeholder">Фото / 3D-рендер</div>
+          </div>
+          <div class="card-body">
+            <div class="card-cat">Бампер · Снегоход</div>
+            <div class="card-title">Силовой бампер для снегохода</div>
+            <div class="card-desc">Передний защитный бампер из стальной трубы для снегоходной техники.</div>
+            <div class="card-tags">
+              <span class="ctag">Сталь</span>
+              <span class="ctag">Siemens NX</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="port-card" data-c="atv">
+          <div class="card-img">
+            <div class="card-img-grid"></div>
+            <div class="card-placeholder">Фото / 3D-рендер</div>
+          </div>
+          <div class="card-body">
+            <div class="card-cat">Защиты · Квадроцикл</div>
+            <div class="card-title">6 защитных элементов для ATV</div>
+            <div class="card-desc">Защиты арок, днища и боковых элементов для квадроциклов из алюминия и ПЭНД.</div>
+            <div class="card-tags">
+              <span class="ctag">ПЭНД</span>
+              <span class="ctag">Алюминий</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="port-card" data-c="other">
+          <div class="card-img">
+            <div class="card-img-grid"></div>
+            <div class="card-placeholder">Фото / 3D-рендер</div>
+          </div>
+          <div class="card-body">
+            <div class="card-cat">Прицеп · Квадроцикл</div>
+            <div class="card-title">Прицеп для квадроцикла</div>
+            <div class="card-desc">Сварная рама прицепа из профильной трубы. Разработка чертежей и технологической оснастки.</div>
+            <div class="card-tags">
+              <span class="ctag">Профтруба</span>
+              <span class="ctag">Сварная рама</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="port-card" data-c="snow">
+          <div class="card-img">
+            <div class="card-img-grid"></div>
+            <div class="card-placeholder">Фото / 3D-рендер</div>
+          </div>
+          <div class="card-body">
+            <div class="card-cat">Рама · Снегоход</div>
+            <div class="card-title">Рама для снегоотвала</div>
+            <div class="card-desc">Несущая рама навесного снегоотвала из стальной трубы.</div>
+            <div class="card-tags">
+              <span class="ctag">Сталь</span>
+              <span class="ctag">Сварка</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="port-card" data-c="atv">
+          <div class="card-img">
+            <div class="card-img-grid"></div>
+            <div class="card-placeholder">Фото / 3D-рендер</div>
+          </div>
+          <div class="card-body">
+            <div class="card-cat">Подножки + Арки · Квадроцикл</div>
+            <div class="card-title">2 подножки · защита колёсных арок</div>
+            <div class="card-desc">Алюминиевые подножки и пластиковые защиты арок для ATV.</div>
+            <div class="card-tags">
+              <span class="ctag">Алюминий</span>
+              <span class="ctag">ПЭНД</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-inner">
+      <div class="eyebrow">Карьера</div>
+      <h2 class="section-title">Опыт и образование</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Ноябрь 2023 — настоящее время</div>
+          <div class="tl-company">Rival Powersports</div>
+          <div class="tl-role">Инженер-конструктор защитных аксессуаров</div>
+          <div class="tl-desc">Проектирование бамперов, защит, подножек и навесного оборудования для квадроциклов и снегоходов. Работа в Siemens NX с полным производственным циклом: 3D-сканирование, реверс-инжиниринг, твёрдотельное моделирование, конструкторская документация по ГОСТ/ЕСКД. Разработано более 21 изделия.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot old"></div>
+          <div class="tl-date">2023 · 3 месяца</div>
+          <div class="tl-company">НИЦ СТМ «Синара»</div>
+          <div class="tl-role">Инженер-конструктор</div>
+          <div class="tl-desc">Разработка рамы тепловоза. Работа с крупногабаритными сварными конструкциями в Компас-3D и AutoCAD.</div>
+        </div>
+      </div>
+      <div class="edu-block">
+        <div class="edu-icon">🎓</div>
+        <div>
+          <div class="edu-deg">УрГУПС — Уральский государственный университет путей сообщения</div>
+          <div class="edu-info">Специальность: Инженер подвижного состава<br>Специалитет · 5 лет · Выпуск 2022</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTS -->
+  <section id="contacts">
+    <div class="svg-grid"></div>
+    <div class="section-inner" style="position:relative;z-index:2;">
+      <div class="eyebrow" style="color:rgba(255,255,255,0.4);">Контакты</div>
+      <h2 class="contact-name">ZUEV</h2>
+      <div class="contact-sub">Открыт к предложениям о сотрудничестве<br>и новым проектам</div>
+      <div class="contact-cards">
+        <div class="cc">
+          <div class="cc-type">Email</div>
+          <div class="cc-val"><a href="mailto:nikita.zuev@kowee.ru">nikita.zuev@kowee.ru</a></div>
+        </div>
+        <div class="cc">
+          <div class="cc-type">Telegram</div>
+          <div class="cc-val"><a href="https://t.me/zuv_nikita" target="_blank">@zuv_nikita</a></div>
+        </div>
+        <div class="cc">
+          <div class="cc-type">Местоположение</div>
+          <div class="cc-val">Екатеринбург<br><span style="font-size:11px;opacity:0.6;">Готов к релокации</span></div>
+        </div>
+        <div class="cc">
+          <div class="cc-type">Статус</div>
+          <div class="cc-val" style="color:#6effa0;">● Открыт к проектам</div>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="submitForm(event)">
+        <input type="text" class="form-input" placeholder="Имя" required>
+        <input type="email" class="form-input" placeholder="Email" required>
+        <textarea class="form-input" placeholder="Сообщение" required></textarea>
+        <button type="submit" class="form-btn">Отправить сообщение →</button>
+      </form>
+      <div class="contact-sign">NIKITA ZUEV · ENGINEER · EKATERINBURG · 2025</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">NZ</div>
+      <div class="footer-copy">© 2025 Никита Зуев. Все права защищены.</div>
+    </div>
+  </footer>
+
+  <script>
+    function pfFilter(btn, cat) {
+      document.querySelectorAll('.pf-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.port-card').forEach(c => {
+        c.style.display = (cat === 'all' || c.dataset.c === cat) ? '' : 'none';
+      });
+    }
+
+    function submitForm(e) {
+      e.preventDefault();
+      const name = e.target[0].value;
+      const email = e.target[1].value;
+      const msg = e.target[2].value;
+      window.location.href = `mailto:nikita.zuev@kowee.ru?subject=Сообщение от ${name}&body=${msg}%0A%0AEmail: ${email}`;
+    }
+  </script>
+
+</body>
+</html>
