@@ -425,6 +425,61 @@
       font-family: 'Inter', sans-serif;
     }
     .form-btn:hover { opacity: 0.9; }
+    /* CAROUSEL */
+    .cert-section { margin-top: 40px; padding-top: 40px; border-top: 0.5px solid var(--border); }
+    .cert-section .edu-block { margin-bottom: 28px; border-top: none; padding-top: 0; }
+    .cert-section .eyebrow { margin-bottom: 20px; }
+    .carousel-wrap {
+      position: relative;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .carousel-viewport {
+      overflow: hidden; flex: 1;
+    }
+    .carousel-track {
+      display: flex; gap: 16px;
+      transition: transform 0.5s cubic-bezier(.4,0,.2,1);
+      will-change: transform;
+    }
+    .cert-card {
+      flex-shrink: 0;
+      width: 220px; height: 185px;
+      border: 0.5px solid var(--border);
+      border-radius: 10px;
+      background: var(--card-bg);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 10px; cursor: pointer;
+      transition: border-color .2s, transform .2s;
+      overflow: hidden; position: relative;
+    }
+    .cert-card:hover { border-color: var(--blue); transform: translateY(-2px); }
+    .cert-card img {
+      width: 100%; height: 100%;
+      object-fit: cover; border-radius: 10px;
+    }
+    .cert-placeholder {
+      font-size: 11px; color: var(--text-muted);
+      letter-spacing: 1px; text-align: center;
+      padding: 0 16px;
+    }
+    .cert-placeholder-icon { font-size: 28px; opacity: 0.4; }
+    .cert-caption {
+      font-size: 11px; color: var(--text-muted);
+      text-align: center; padding: 8px 12px 0;
+      line-height: 1.4; letter-spacing: 0.2px;
+    }
+    .car-btn {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--white); color: var(--blue);
+      font-size: 16px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: all .2s;
+      box-shadow: 0 2px 8px rgba(26,63,166,0.08);
+    }
+    .car-btn:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+
     .contact-sign {
       font-size: 9px; color: rgba(255,255,255,0.18);
       letter-spacing: 2px; text-transform: uppercase;
@@ -447,6 +502,47 @@
       letter-spacing: 4px; color: rgba(255,255,255,0.3);
     }
     .footer-copy { font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 1px; }
+
+    /* CERTIFICATES CAROUSEL - duplicate removed */
+    .carousel-wrap {
+      display: flex; align-items: center; gap: 12px;
+      position: relative;
+    }
+    .carousel-viewport {
+      flex: 1; overflow: hidden; border-radius: 10px;
+    }
+    .carousel-track {
+      display: flex; gap: 16px;
+      transition: transform 0.4s cubic-bezier(.4,0,.2,1);
+      will-change: transform;
+    }
+    .cert-card {
+      flex: 0 0 calc(33.333% - 11px);
+      border-radius: 10px; overflow: hidden;
+      border: 0.5px solid var(--border);
+      aspect-ratio: 4/3;
+      background: #fff;
+    }
+    .cert-card img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .cert-placeholder {
+      width: 100%; height: 100%;
+      background: var(--card-bg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; color: var(--text-muted);
+      letter-spacing: 1px; min-height: 180px;
+    }
+    .car-btn {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--white); color: var(--blue);
+      font-size: 16px; cursor: pointer;
+      flex-shrink: 0; transition: all .2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .car-btn:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
@@ -507,7 +603,7 @@
         <a href="#contacts" class="btn-solid">Связаться</a>
       </div>
     </div>
-    <div class="hero-city">NIKITA ZUEV · 2026</div>
+    <div class="hero-city">NIKITA ZUEV · 2025</div>
   </section>
 
   <!-- ABOUT -->
@@ -740,16 +836,58 @@
           <div class="tl-date">2023 · 3 месяца</div>
           <div class="tl-company">НИЦ СТМ «Синара»</div>
           <div class="tl-role">Инженер-конструктор</div>
-          <div class="tl-desc">Разработка рамы тепловоза. Работа с крупногабаритными сварными конструкциями в Siemens NX.</div>
+          <div class="tl-desc">Разработка рамы тепловоза. Работа с крупногабаритными сварными конструкциями в Компас-3D и AutoCAD.</div>
         </div>
       </div>
-      <div class="edu-block">
-        <div class="edu-icon">🎓</div>
-        <div>
-          <div class="edu-deg">УрГУПС — Уральский государственный университет путей сообщения</div>
-          <div class="edu-info">Специальность: Инженер подвижного состава<br>Специалитет · 5 лет · Выпуск 2022</div>
+      <div class="cert-section">
+        <div class="eyebrow">Дипломы и сертификаты</div>
+        <div class="edu-block">
+          <div class="edu-icon">🎓</div>
+          <div>
+            <div class="edu-deg">УрГУПС — Уральский государственный университет путей сообщения</div>
+            <div class="edu-info">Специальность: Инженер подвижного состава<br>Специалитет · 5 лет · Выпуск 2022</div>
+          </div>
+        </div>
+        <div class="carousel-wrap">
+          <button class="car-btn" id="carPrev">&#8592;</button>
+          <div class="carousel-viewport" id="carViewport">
+            <div class="carousel-track" id="carTrack">
+              <div class="cert-card">
+                <div class="cert-placeholder-icon">📄</div>
+                <div class="cert-placeholder">Сертификат / диплом</div>
+                <div class="cert-caption">Название документа</div>
+              </div>
+              <div class="cert-card">
+                <div class="cert-placeholder-icon">📄</div>
+                <div class="cert-placeholder">Сертификат / диплом</div>
+                <div class="cert-caption">Название документа</div>
+              </div>
+              <div class="cert-card">
+                <div class="cert-placeholder-icon">📄</div>
+                <div class="cert-placeholder">Сертификат / диплом</div>
+                <div class="cert-caption">Название документа</div>
+              </div>
+              <div class="cert-card">
+                <div class="cert-placeholder-icon">📄</div>
+                <div class="cert-placeholder">Сертификат / диплом</div>
+                <div class="cert-caption">Название документа</div>
+              </div>
+              <div class="cert-card">
+                <div class="cert-placeholder-icon">📄</div>
+                <div class="cert-placeholder">Сертификат / диплом</div>
+                <div class="cert-caption">Название документа</div>
+              </div>
+              <div class="cert-card">
+                <div class="cert-placeholder-icon">📄</div>
+                <div class="cert-placeholder">Сертификат / диплом</div>
+                <div class="cert-caption">Название документа</div>
+              </div>
+            </div>
+          </div>
+          <button class="car-btn" id="carNext">&#8594;</button>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -784,7 +922,7 @@
         <textarea class="form-input" placeholder="Сообщение" required></textarea>
         <button type="submit" class="form-btn">Отправить сообщение →</button>
       </form>
-      <div class="contact-sign">NIKITA ZUEV · ENGINEER · EKATERINBURG · 2025</div>
+      <div class="contact-sign">NIKITA ZUEV · ENGINEER · EKATERINBURG · 2026</div>
     </div>
   </section>
 
@@ -797,6 +935,7 @@
   </footer>
 
   <script>
+    // PORTFOLIO FILTER
     function pfFilter(btn, cat) {
       document.querySelectorAll('.pf-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
@@ -805,6 +944,7 @@
       });
     }
 
+    // CONTACT FORM
     function submitForm(e) {
       e.preventDefault();
       const name = e.target[0].value;
@@ -812,6 +952,59 @@
       const msg = e.target[2].value;
       window.location.href = `mailto:nikita.zuev@kowee.ru?subject=Сообщение от ${name}&body=${msg}%0A%0AEmail: ${email}`;
     }
+
+    // INFINITE CAROUSEL
+    (function() {
+      const track = document.getElementById('carTrack');
+      const viewport = document.getElementById('carViewport');
+      const prevBtn = document.getElementById('carPrev');
+      const nextBtn = document.getElementById('carNext');
+      if (!track || !viewport) return;
+
+      const GAP = 16;
+      const CARD_W = 220;
+      const STEP = CARD_W + GAP;
+
+      // Clone for infinite loop: append + prepend copies
+      const origCards = Array.from(track.children);
+      const total = origCards.length;
+      origCards.forEach(c => track.appendChild(c.cloneNode(true)));
+      origCards.forEach(c => track.insertBefore(c.cloneNode(true), track.firstChild));
+
+      let current = total; // start at real beginning
+      let autoTimer;
+      let isAnimating = false;
+
+      function goTo(idx, animate) {
+        track.style.transition = animate ? 'transform 0.45s cubic-bezier(.4,0,.2,1)' : 'none';
+        track.style.transform = `translateX(-${idx * STEP}px)`;
+        current = idx;
+      }
+
+      // Init without animation
+      requestAnimationFrame(() => goTo(current, false));
+
+      track.addEventListener('transitionend', () => {
+        isAnimating = false;
+        // Jump to real position if we hit clones
+        if (current >= total * 2) goTo(total, false);
+        else if (current <= 0) goTo(total, false);
+      });
+
+      function move(dir) {
+        if (isAnimating) return;
+        isAnimating = true;
+        goTo(current + dir, true);
+      }
+
+      nextBtn.addEventListener('click', () => { clearInterval(autoTimer); move(1); startAuto(); });
+      prevBtn.addEventListener('click', () => { clearInterval(autoTimer); move(-1); startAuto(); });
+
+      function startAuto() {
+        autoTimer = setInterval(() => move(1), 3200);
+      }
+      startAuto();
+    })();
   </script>
 
 </body>
