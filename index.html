@@ -512,47 +512,6 @@
     }
     .footer-copy { font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 1px; }
 
-    /* CERTIFICATES CAROUSEL - duplicate removed */
-    .carousel-wrap {
-      display: flex; align-items: center; gap: 12px;
-      position: relative;
-    }
-    .carousel-viewport {
-      flex: 1; overflow: hidden; border-radius: 10px;
-    }
-    .carousel-track {
-      display: flex; gap: 16px;
-      transition: transform 0.4s cubic-bezier(.4,0,.2,1);
-      will-change: transform;
-    }
-    .cert-card {
-      flex: 0 0 calc(33.333% - 11px);
-      border-radius: 10px; overflow: hidden;
-      border: 0.5px solid var(--border);
-      aspect-ratio: 4/3;
-      background: #fff;
-    }
-    .cert-card img {
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
-    }
-    .cert-placeholder {
-      width: 100%; height: 100%;
-      background: var(--card-bg);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 12px; color: var(--text-muted);
-      letter-spacing: 1px; min-height: 180px;
-    }
-    .car-btn {
-      width: 40px; height: 40px; border-radius: 50%;
-      border: 1px solid var(--border);
-      background: var(--white); color: var(--blue);
-      font-size: 16px; cursor: pointer;
-      flex-shrink: 0; transition: all .2s;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .car-btn:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
-
     /* RESPONSIVE */
     @media (max-width: 900px) {
       nav { padding: 0 24px; }
@@ -1013,16 +972,19 @@
     }
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
-    // Attach lightbox to cert cards
-    document.querySelectorAll('.cert-card').forEach(card => {
-      const img = card.querySelector('img');
-      if (img) {
-        card.style.cursor = 'zoom-in';
-        card.addEventListener('click', () => openLightbox(img.src));
-      }
-    });
+    // LIGHTBOX — attach after carousel clones cards
+    function attachLightbox() {
+      document.querySelectorAll('.cert-card').forEach(card => {
+        const img = card.querySelector('img');
+        if (img && !card.dataset.lightbox) {
+          card.dataset.lightbox = '1';
+          card.style.cursor = 'zoom-in';
+          card.addEventListener('click', () => openLightbox(img.src));
+        }
+      });
+    }
 
-    // CAROUSEL — simple index wrap, no cloning
+    // CAROUSEL — true infinite loop
     (function() {
       const track = document.getElementById('carTrack');
       const viewport = document.getElementById('carViewport');
@@ -1033,30 +995,35 @@
       const GAP = 16;
       const CARD_W = 220;
       const STEP = CARD_W + GAP;
-      const cards = track.children;
-      let current = 0;
+
+      const origCards = Array.from(track.children);
+      const total = origCards.length;
+
+      // Append clones at end
+      origCards.forEach(c => track.appendChild(c.cloneNode(true)));
+      // Prepend clones at start (reverse order so layout is correct)
+      [...origCards].reverse().forEach(c => track.insertBefore(c.cloneNode(true), track.firstChild));
+
+      // Layout: [prepClones(n)][ORIG(n)][appClones(n)]
+      // Start at index = total (first real card)
+      let current = total;
       let autoTimer;
       let isAnimating = false;
 
-      function visibleCount() {
-        return Math.max(1, Math.floor((viewport.offsetWidth + GAP) / STEP));
-      }
-
-      function maxIndex() {
-        return Math.max(0, cards.length - visibleCount());
-      }
-
       function goTo(idx, animate) {
-        // Wrap around
-        if (idx > maxIndex()) idx = 0;
-        if (idx < 0) idx = maxIndex();
         current = idx;
         track.style.transition = animate ? 'transform 0.45s cubic-bezier(.4,0,.2,1)' : 'none';
-        track.style.transform = `translateX(-${current * STEP}px)`;
+        track.style.transform = `translateX(-${idx * STEP}px)`;
         if (animate) isAnimating = true;
       }
 
-      track.addEventListener('transitionend', () => { isAnimating = false; });
+      track.addEventListener('transitionend', () => {
+        isAnimating = false;
+        // Seamlessly jump: if in appended clones → jump to originals
+        if (current >= total * 2) goTo(current - total, false);
+        // If in prepended clones → jump to originals
+        else if (current < total) goTo(current + total, false);
+      });
 
       function move(dir) {
         if (isAnimating) return;
@@ -1067,12 +1034,13 @@
       nextBtn.addEventListener('click', () => { clearInterval(autoTimer); move(1); startAuto(); });
 
       function startAuto() {
-        autoTimer = setInterval(() => move(1), 3200);
+        autoTimer = setInterval(() => { if (!isAnimating) move(1); }, 3200);
       }
 
-      goTo(0, false);
+      goTo(total, false);
       startAuto();
       window.addEventListener('resize', () => goTo(current, false));
+      attachLightbox();
     })();
   </script>
 
