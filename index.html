@@ -381,9 +381,9 @@
       margin-bottom: 36px; line-height: 1.7;
     }
     .contact-cards {
-      display: grid; grid-template-columns: repeat(4, 1fr);
+      display: grid; grid-template-columns: repeat(5, 1fr);
       gap: 12px; margin-bottom: 40px;
-      max-width: 800px; margin-left: auto; margin-right: auto;
+      max-width: 1000px; margin-left: auto; margin-right: auto;
     }
     .cc {
       background: rgba(255,255,255,0.07);
@@ -870,16 +870,6 @@
                   <div class="cert-date">15 мая 2024</div>
                 </div>
               </div>
-              <div class="cert-card">
-                <div class="cert-img">
-                  <div class="cert-placeholder-icon">📄</div>
-                </div>
-                <div class="cert-info">
-                  <div class="cert-theme">Тема удостоверения</div>
-                  <div class="cert-org">Название организации</div>
-                  <div class="cert-date">Дата получения</div>
-                </div>
-              </div>
             </div>
           </div>
           <button class="car-btn" id="carNext">&#8594;</button>
@@ -906,6 +896,10 @@
           <div class="cc-val"><a href="https://t.me/zuv_nikita" target="_blank">@zuv_nikita</a></div>
         </div>
         <div class="cc">
+          <div class="cc-type">Телефон</div>
+          <div class="cc-val"><a href="tel:+79090009775">+7 (909) 000 97-75</a></div>
+        </div>
+        <div class="cc">
           <div class="cc-type">Местоположение</div>
           <div class="cc-val">Екатеринбург<br><span style="font-size:11px;opacity:0.6;">Готов к релокации</span></div>
         </div>
@@ -914,12 +908,6 @@
           <div class="cc-val" style="color:#6effa0;">● Открыт к проектам</div>
         </div>
       </div>
-      <form class="contact-form" onsubmit="submitForm(event)">
-        <input type="text" class="form-input" placeholder="Имя" required>
-        <input type="email" class="form-input" placeholder="Email" required>
-        <textarea class="form-input" placeholder="Сообщение" required></textarea>
-        <button type="submit" class="form-btn">Отправить сообщение →</button>
-      </form>
       <div class="contact-sign">NIKITA ZUEV · ENGINEER · EKATERINBURG · 2026</div>
     </div>
   </section>
