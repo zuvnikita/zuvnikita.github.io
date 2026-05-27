@@ -248,6 +248,29 @@
 
     /* PORTFOLIO */
     #portfolio { background: var(--white); }
+    .year-group { margin-bottom: 40px; }
+    .year-label {
+      display: flex; align-items: center; gap: 12px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 14px; font-weight: 700;
+      color: var(--text);
+      letter-spacing: 3px; text-transform: uppercase;
+      padding-bottom: 12px;
+      border-bottom: 0.5px solid var(--border);
+      margin-bottom: 0;
+      cursor: pointer; user-select: none;
+    }
+    .year-toggle {
+      width: 24px; height: 24px; border-radius: 50%;
+      border: 1.5px solid var(--blue);
+      display: inline-flex; align-items: center; justify-content: center;
+      transition: all .2s; flex-shrink: 0;
+    }
+    .year-toggle svg { width: 12px; height: 12px; transition: all .2s; }
+    .year-label:hover .year-toggle { background: var(--blue); }
+    .year-label:hover .year-toggle svg line { stroke: #fff; }
+    .year-cards { overflow: hidden; transition: max-height 0.4s ease, opacity 0.3s ease; max-height: 0; opacity: 0; }
+    .year-cards.open { max-height: 5000px; opacity: 1; margin-top: 20px; }
     .pf-filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
     .pf-btn {
       padding: 6px 16px; border-radius: 20px;
@@ -680,113 +703,61 @@
         <button class="pf-btn" onclick="pfFilter(this,'snow')">Снегоход</button>
         <button class="pf-btn" onclick="pfFilter(this,'other')">Прочее</button>
       </div>
-      <div class="port-grid" id="portGrid">
 
-        <!-- Card 1 — wide, featured -->
-        <div class="port-card wide" data-c="atv">
-          <div class="card-img">
-            <div class="card-img-grid"></div>
-            <div class="card-feat">Основной проект</div>
-            <div class="card-placeholder">Фото / 3D-рендер</div>
-          </div>
-          <div class="card-body">
-            <div class="card-cat">Бамперы · Квадроцикл</div>
-            <div class="card-title">Серия бамперов — 10 моделей для ATV</div>
-            <div class="card-desc">Разработка линейки передних и задних защитных бамперов из стальной трубы для квадроциклов различных марок. Полный цикл: сканирование объекта, моделирование в Siemens NX, оформление КД по ГОСТ/ЕСКД.</div>
-            <div class="card-tags">
-              <span class="ctag">Сталь</span>
-              <span class="ctag">Профтруба</span>
-              <span class="ctag">Siemens NX</span>
-              <span class="ctag">ГОСТ</span>
-            </div>
-          </div>
+      <div class="year-group">
+        <div class="year-label" onclick="toggleYear(this)">
+          <span class="year-toggle"><svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><line x1="6" y1="1" x2="6" y2="11" stroke="#1a3fa6" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="6" x2="11" y2="6" stroke="#1a3fa6" stroke-width="1.5" stroke-linecap="round"/></svg></span>2026
         </div>
-
-        <!-- Card 2 -->
-        <div class="port-card" data-c="snow">
-          <div class="card-img">
-            <div class="card-img-grid"></div>
-            <div class="card-placeholder">Фото / 3D-рендер</div>
-          </div>
-          <div class="card-body">
-            <div class="card-cat">Бампер · Снегоход</div>
-            <div class="card-title">Силовой бампер для снегохода</div>
-            <div class="card-desc">Передний защитный бампер из стальной трубы для снегоходной техники.</div>
-            <div class="card-tags">
-              <span class="ctag">Сталь</span>
-              <span class="ctag">Siemens NX</span>
-            </div>
-          </div>
+        <div class="year-cards">
+          <div class="port-grid">
+          <div class="port-card" data-c="atv"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Бампер передний · Квадроцикл</div><div class="card-title">CFMOTO CForce C6 PRO — Бампер передний</div><div class="card-desc">Силовой передний бампер из стальной трубы для модели 2026 года.</div><div class="card-tags"><span class="ctag">Сталь</span><span class="ctag">Профтруба</span></div></div></div>
+          <div class="port-card" data-c="atv"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Бампер задний · Квадроцикл</div><div class="card-title">CFMOTO CForce C6 PRO — Бампер задний</div><div class="card-desc">Силовой задний бампер из стальной трубы для модели 2026 года.</div><div class="card-tags"><span class="ctag">Сталь</span><span class="ctag">Профтруба</span></div></div></div>
+          <div class="port-card" data-c="atv"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Бампер передний · Квадроцикл</div><div class="card-title">CFMOTO CForce C5 — Бампер передний</div><div class="card-desc">Силовой передний бампер из стальной трубы для модели 2026 года.</div><div class="card-tags"><span class="ctag">Сталь</span><span class="ctag">Профтруба</span></div></div></div>
+          <div class="port-card" data-c="atv"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Бампер задний · Квадроцикл</div><div class="card-title">SEGWAY AT5 — Бампер задний</div><div class="card-desc">Силовой задний бампер из стальной трубы.</div><div class="card-tags"><span class="ctag">Сталь</span><span class="ctag">Профтруба</span></div></div></div>
+          <div class="port-card" data-c="atv"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Защита днища · Квадроцикл</div><div class="card-title">Sharmax 650 — Защита днища</div><div class="card-desc">Алюминиевая защита днища от ударов и повреждений.</div><div class="card-tags"><span class="ctag">Алюминий</span></div></div></div>
+          <div class="port-card" data-c="snow"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Защита днища · Снегоход</div><div class="card-title">SKI-DOO Expedition G5 SWT — Защита днища</div><div class="card-desc">Пластиковая защита днища из ПЭНД.</div><div class="card-tags"><span class="ctag">ПЭНД</span></div></div></div>
+          <div class="port-card" data-c="other"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Тележка · Прочее</div><div class="card-title">Тележка для лодочного мотора (без доски)</div><div class="card-desc">Тележка из профильной трубы для транспортировки лодочного мотора.</div><div class="card-tags"><span class="ctag">Сталь</span><span class="ctag">Профтруба</span></div></div></div>
+          <div class="port-card" data-c="other"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Тележка · Прочее</div><div class="card-title">Тележка для лодочного мотора (низкая)</div><div class="card-desc">Низкопрофильная тележка из профильной трубы.</div><div class="card-tags"><span class="ctag">Сталь</span><span class="ctag">Профтруба</span></div></div></div>
+          <div class="port-card" data-c="other"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Оснастка · Прочее</div><div class="card-title">Оснастка для тестирования колёс</div><div class="card-desc">Технологическая оснастка для проверки геометрии колёс.</div><div class="card-tags"><span class="ctag">Сталь</span><span class="ctag">Оснастка</span></div></div></div>
         </div>
-
-        <!-- Card 3 -->
-        <div class="port-card" data-c="atv">
-          <div class="card-img">
-            <div class="card-img-grid"></div>
-            <div class="card-placeholder">Фото / 3D-рендер</div>
-          </div>
-          <div class="card-body">
-            <div class="card-cat">Защиты · Квадроцикл</div>
-            <div class="card-title">6 защитных элементов для ATV</div>
-            <div class="card-desc">Защиты арок, днища и боковых элементов для квадроциклов из алюминия и ПЭНД.</div>
-            <div class="card-tags">
-              <span class="ctag">ПЭНД</span>
-              <span class="ctag">Алюминий</span>
-            </div>
-          </div>
         </div>
+      </div>
 
-        <!-- Card 4 -->
-        <div class="port-card" data-c="other">
-          <div class="card-img">
-            <div class="card-img-grid"></div>
-            <div class="card-placeholder">Фото / 3D-рендер</div>
-          </div>
-          <div class="card-body">
-            <div class="card-cat">Прицеп · Квадроцикл</div>
-            <div class="card-title">Прицеп для квадроцикла</div>
-            <div class="card-desc">Сварная рама прицепа из профильной трубы. Разработка чертежей и технологической оснастки.</div>
-            <div class="card-tags">
-              <span class="ctag">Профтруба</span>
-              <span class="ctag">Сварная рама</span>
-            </div>
-          </div>
+      <div class="year-group">
+        <div class="year-label" onclick="toggleYear(this)">
+          <span class="year-toggle"><svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><line x1="6" y1="1" x2="6" y2="11" stroke="#1a3fa6" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="6" x2="11" y2="6" stroke="#1a3fa6" stroke-width="1.5" stroke-linecap="round"/></svg></span>2025
         </div>
-
-        <!-- Card 5 -->
-        <div class="port-card" data-c="snow">
-          <div class="card-img">
-            <div class="card-img-grid"></div>
-            <div class="card-placeholder">Фото / 3D-рендер</div>
-          </div>
-          <div class="card-body">
-            <div class="card-cat">Рама · Снегоход</div>
-            <div class="card-title">Рама для снегоотвала</div>
-            <div class="card-desc">Несущая рама навесного снегоотвала из стальной трубы.</div>
-            <div class="card-tags">
-              <span class="ctag">Сталь</span>
-              <span class="ctag">Сварка</span>
-            </div>
-          </div>
+        <div class="year-cards">
+        <div class="port-grid">
+          <div class="port-card" data-c="atv"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Бампер передний · Квадроцикл</div><div class="card-title">HND QRX 650 PRO — Бампер передний</div><div class="card-desc">Силовой передний бампер из стальной трубы.</div><div class="card-tags"><span class="ctag">Сталь</span><span class="ctag">Профтруба</span></div></div></div>
+          <div class="port-card" data-c="atv"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Бампер задний · Квадроцикл</div><div class="card-title">HND QRX 650 PRO — Бампер задний</div><div class="card-desc">Силовой задний бампер из стальной трубы.</div><div class="card-tags"><span class="ctag">Сталь</span><span class="ctag">Профтруба</span></div></div></div>
+          <div class="port-card" data-c="atv"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Бампер передний · Квадроцикл</div><div class="card-title">Redstone 550 — Бампер передний</div><div class="card-desc">Силовой передний бампер из стальной трубы.</div><div class="card-tags"><span class="ctag">Сталь</span><span class="ctag">Профтруба</span></div></div></div>
+          <div class="port-card" data-c="atv"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Бампер задний · Квадроцикл</div><div class="card-title">Redstone 550 — Бампер задний</div><div class="card-desc">Силовой задний бампер из стальной трубы.</div><div class="card-tags"><span class="ctag">Сталь</span><span class="ctag">Профтруба</span></div></div></div>
+          <div class="port-card" data-c="snow"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Бампер передний · Снегоход</div><div class="card-title">RM Frontier 1000 — Бампер передний</div><div class="card-desc">Силовой передний бампер из стальной трубы.</div><div class="card-tags"><span class="ctag">Сталь</span><span class="ctag">Профтруба</span></div></div></div>
+          <div class="port-card" data-c="atv"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Бампер передний · Квадроцикл</div><div class="card-title">HISAN Guardian 750 — Бампер передний</div><div class="card-desc">Силовой передний бампер из стальной трубы.</div><div class="card-tags"><span class="ctag">Сталь</span><span class="ctag">Профтруба</span></div></div></div>
+          <div class="port-card" data-c="atv"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Бампер задний · Квадроцикл</div><div class="card-title">HISAN Guardian 750 — Бампер задний</div><div class="card-desc">Силовой задний бампер из стальной трубы.</div><div class="card-tags"><span class="ctag">Сталь</span><span class="ctag">Профтруба</span></div></div></div>
+          <div class="port-card" data-c="atv"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Защита арок · Квадроцикл</div><div class="card-title">BRP Can-Am Maverick R — Защита арок</div><div class="card-desc">Пластиковая защита колёсных арок из ПЭНД.</div><div class="card-tags"><span class="ctag">ПЭНД</span></div></div></div>
+          <div class="port-card" data-c="atv"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Защита днища · Квадроцикл</div><div class="card-title">BRP Can-Am Outlander G3 1000 — Защита днища</div><div class="card-desc">Пластиковая защита днища из ПЭНД.</div><div class="card-tags"><span class="ctag">ПЭНД</span></div></div></div>
+          <div class="port-card" data-c="atv"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Подножки · Квадроцикл</div><div class="card-title">BRP Can-Am Outlander G3 850/1000 — Подножки</div><div class="card-desc">Алюминиевые подножки для повышения комфорта и безопасности.</div><div class="card-tags"><span class="ctag">Алюминий</span></div></div></div>
+          <div class="port-card" data-c="atv"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Подножки · Квадроцикл</div><div class="card-title">CFMOTO CForce 800 HO EPS — Подножки</div><div class="card-desc">Алюминиевые подножки для повышения комфорта и безопасности.</div><div class="card-tags"><span class="ctag">Алюминий</span></div></div></div>
+          <div class="port-card" data-c="other"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Прицеп · Прочее</div><div class="card-title">Прицеп для квадроцикла</div><div class="card-desc">Бюджетный прицеп из профильной трубы максимально простой конструкции.</div><div class="card-tags"><span class="ctag">Сталь</span><span class="ctag">Профтруба</span></div></div></div>
         </div>
-
-        <!-- Card 6 -->
-        <div class="port-card" data-c="atv">
-          <div class="card-img">
-            <div class="card-img-grid"></div>
-            <div class="card-placeholder">Фото / 3D-рендер</div>
-          </div>
-          <div class="card-body">
-            <div class="card-cat">Подножки + Арки · Квадроцикл</div>
-            <div class="card-title">2 подножки · защита колёсных арок</div>
-            <div class="card-desc">Алюминиевые подножки и пластиковые защиты арок для ATV.</div>
-            <div class="card-tags">
-              <span class="ctag">Алюминий</span>
-              <span class="ctag">ПЭНД</span>
-            </div>
-          </div>
         </div>
+      </div>
 
+      <div class="year-group">
+        <div class="year-label" onclick="toggleYear(this)">
+          <span class="year-toggle"><svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><line x1="6" y1="1" x2="6" y2="11" stroke="#1a3fa6" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="6" x2="11" y2="6" stroke="#1a3fa6" stroke-width="1.5" stroke-linecap="round"/></svg></span>2024
+        </div>
+        <div class="year-cards">
+        <div class="port-grid">
+          <div class="port-card" data-c="atv"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Бампер передний · Квадроцикл</div><div class="card-title">TGB Blade 550 EPS — Бампер передний</div><div class="card-desc">Силовой передний бампер из стальной трубы.</div><div class="card-tags"><span class="ctag">Сталь</span><span class="ctag">Профтруба</span></div></div></div>
+          <div class="port-card" data-c="atv"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Защита днища · Квадроцикл</div><div class="card-title">RM 800 T — Защита днища</div><div class="card-desc">Пластиковая защита днища из ПЭНД.</div><div class="card-tags"><span class="ctag">ПЭНД</span></div></div></div>
+          <div class="port-card" data-c="atv"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Защита днища · Квадроцикл</div><div class="card-title">BRP Can-Am Outlander G3L MAX XT 700 — Защита днища</div><div class="card-desc">Пластиковая защита днища из ПЭНД.</div><div class="card-tags"><span class="ctag">ПЭНД</span></div></div></div>
+          <div class="port-card" data-c="atv"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Защита днища · Квадроцикл</div><div class="card-title">CFMOTO CForce 800 — Защита днища</div><div class="card-desc">Алюминиевая защита днища от ударов и повреждений.</div><div class="card-tags"><span class="ctag">Алюминий</span></div></div></div>
+          <div class="port-card" data-c="atv"><div class="card-img"><div class="card-img-grid"></div><div class="card-placeholder">Фото / 3D-рендер</div></div><div class="card-body"><div class="card-cat">Подножки · Квадроцикл</div><div class="card-title">AODES Pathcross 1000 — Подножки</div><div class="card-desc">Алюминиевые подножки для повышения комфорта и безопасности.</div><div class="card-tags"><span class="ctag">Алюминий</span></div></div></div>
+        </div>
+        </div>
       </div>
     </div>
   </section>
@@ -932,12 +903,29 @@
   </div>
 
   <script>
+    // YEAR TOGGLE
+    const plusSVG = `<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><line x1="6" y1="1" x2="6" y2="11" stroke="#1a3fa6" stroke-width="1.5" stroke-linecap="round"/><line x1="1" y1="6" x2="11" y2="6" stroke="#1a3fa6" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+    const minusSVG = `<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><line x1="1" y1="6" x2="11" y2="6" stroke="#1a3fa6" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+
+    function toggleYear(label) {
+      const cards = label.nextElementSibling;
+      const toggle = label.querySelector('.year-toggle');
+      const isOpen = cards.classList.contains('open');
+      cards.classList.toggle('open');
+      toggle.innerHTML = isOpen ? plusSVG : minusSVG;
+    }
+
     // PORTFOLIO FILTER
     function pfFilter(btn, cat) {
       document.querySelectorAll('.pf-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       document.querySelectorAll('.port-card').forEach(c => {
         c.style.display = (cat === 'all' || c.dataset.c === cat) ? '' : 'none';
+      });
+      document.querySelectorAll('.year-group').forEach(group => {
+        const hasVisible = Array.from(group.querySelectorAll('.port-card'))
+          .some(c => cat === 'all' || c.dataset.c === cat);
+        group.style.display = hasVisible ? '' : 'none';
       });
     }
 
